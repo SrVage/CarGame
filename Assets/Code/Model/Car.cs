@@ -1,6 +1,6 @@
 ﻿namespace Code.Model
 {
-    internal class Car
+    public class Car
     {
         public Car(float speed)
         {

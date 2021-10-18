@@ -2,7 +2,7 @@
 
 namespace Code.Tools
 {
-    internal class SubscriptionProperty<T>:IReadOnlySubscriptionProperty<T>
+    public class SubscriptionProperty<T>:IReadOnlySubscriptionProperty<T>
     {
         private T _value;
         private Action<T> _onChangeValue;

@@ -2,7 +2,7 @@
 
 namespace Code.Model
 {
-    internal class ProfilePlayer
+    public class ProfilePlayer
     {
         public ProfilePlayer(float speedCar)
         {
