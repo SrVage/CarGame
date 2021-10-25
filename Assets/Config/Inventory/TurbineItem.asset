@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dae7c149a0c4cc99e9d3f2857549db9, type: 3}
+  m_Name: TurbineItem
+  m_EditorClassIdentifier: 
+  InventoryItem: {fileID: 11400000, guid: 8f76e9182988ff140b244e573c0d03a9, type: 2}
+  UpgradeType: 1
+  Place: 2
+  Value: 3
+  Sprite: {fileID: 21300000, guid: 88dcb016e0c465d4480a8dce4492b879, type: 3}

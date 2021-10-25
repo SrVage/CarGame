@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Code.Model.Config;
 using Code.Tools;
+using UnityEngine;
 using UnityEngine.Purchasing;
 
 namespace Code.Model.Shop
@@ -8,13 +10,13 @@ namespace Code.Model.Shop
     {
         private IStoreController _storeController;
         private IExtensionProvider _extensionProvider;
-        private bool _isInitialized;
+        private bool _isInitialized = true;
         private readonly SubscriptionAction _onSuccessPurchase;
         private readonly SubscriptionAction _onFailedPurchase;
         public IReadOnlySubscriptionAction OnSuccessPurchase => _onSuccessPurchase;
         public IReadOnlySubscriptionAction OnFailedPurchase => _onFailedPurchase;
 
-        public ShopTools(List<ShopProduct> products)
+        public ShopTools(List<ShopItem> products)
         {
             _onSuccessPurchase = new SubscriptionAction();
             _onFailedPurchase = new SubscriptionAction();
@@ -29,6 +31,7 @@ namespace Code.Model.Shop
         {
             if (!_isInitialized)
                 return;
+            Debug.Log("Purchase");
             _storeController.InitiatePurchase(id);
         }
 

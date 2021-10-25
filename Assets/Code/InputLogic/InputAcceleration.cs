@@ -21,10 +21,15 @@ namespace Code.InputLogic
         private void Move()
         {
             Vector3 direction = Vector3.zero;
+#if UNITY_EDITOR
+            direction.x = -Input.GetAxis("Horizontal");
+            direction.z = Input.GetAxis("Vertical");
+#else
             direction.x = -Input.acceleration.y;
             direction.z = Input.acceleration.x;
             if (direction.sqrMagnitude>1)
                 direction.Normalize();
+#endif
             OnRightMove(direction.sqrMagnitude/20*_speed);
         }
     }

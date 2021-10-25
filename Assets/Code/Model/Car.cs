@@ -1,12 +1,20 @@
-﻿namespace Code.Model
+﻿using Code.Model.Inventory;
+
+namespace Code.Model
 {
-    public class Car
+    public class Car:IUpgradableCar
     {
+        private readonly float _defaultSpeed;
         public Car(float speed)
         {
-            Speed = speed;
+            _defaultSpeed = speed;
+            Restore();
         }
         
-        public float Speed { get; }
+        public float Speed { get; set; }
+        public void Restore()
+        {
+            Speed = _defaultSpeed;
+        }
     }
 }

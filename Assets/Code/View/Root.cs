@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Code.InputLogic;
 using Code.Model;
+using Code.Model.Config;
 using Code.Model.Shop;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -11,6 +12,8 @@ namespace Code.View
     public class Root:MonoBehaviour
     {
         [SerializeField] private Transform _root;
+        [SerializeField] private ShopItems _shopItems;
+        [SerializeField] private UpgradeItemRepository _upgradeItemRepository;
 
         private ProfilePlayer _model;
         private MainController _mainController;
@@ -18,18 +21,9 @@ namespace Code.View
         private void Start()
         {
             _model = new ProfilePlayer(1.0f);
-            _mainController = new MainController(_model, _root);
+            _mainController = new MainController(_model, _root, _shopItems.ShopItemsList, _upgradeItemRepository);
             _model.CurrentState.value = GameState.Start;
-            _shopTools = new ShopTools(CreateProducts());
-
-        }
-
-        private List<ShopProduct> CreateProducts()
-        {
-            List<ShopProduct> products = new List<ShopProduct>();
-            var gems = new ShopProduct(){CurrentProductType = ProductType.Consumable, ID = "1"};
-            products.Add(gems);
-            return products;
+            _shopTools = new ShopTools(_shopItems.ShopItemsList);
         }
 
         private void OnDestroy()
