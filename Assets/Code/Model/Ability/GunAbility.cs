@@ -11,12 +11,14 @@ namespace Code.Model.Ability
         private readonly Rigidbody2D _viewPrefab;
         private readonly float _projectSpeed;
 
-        public GunAbility(AbilityItemConfig config)
+        public GunAbility(AbilityItemConfig config, [NotNull] string viewPath="Prefabs/CannonBomb")
         {
             _config = config;
+            var go = ResourceLoader.LoadPrefab(new ResourcePath() { PathResource = viewPath });
+            _viewPrefab = go.GetComponent<Rigidbody2D>();
         }
         
-        public GunAbility(float projectSpeed, [NotNull] string viewPath)
+        public GunAbility(float projectSpeed, [NotNull] string viewPath="Resources/Prefabs/CannonBomb")
         {
             var go = ResourceLoader.LoadPrefab(new ResourcePath() { PathResource = viewPath });
             _viewPrefab = go.GetComponent<Rigidbody2D>();

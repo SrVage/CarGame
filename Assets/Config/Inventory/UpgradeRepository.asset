@@ -15,3 +15,4 @@ MonoBehaviour:
   UpgradeItemConfigs:
   - {fileID: 11400000, guid: 6b4bc8eb1953f744c90802fd18d53ea4, type: 2}
   - {fileID: 11400000, guid: 7490ac2666a816845b07c55a0055bf11, type: 2}
+  - {fileID: 11400000, guid: 381d872c399d61d43a8e1050df737de7, type: 2}

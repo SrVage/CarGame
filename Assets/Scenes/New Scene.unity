@@ -338,6 +338,8 @@ MonoBehaviour:
   _shopItems: {fileID: 11400000, guid: 565c8ba9ee9a7814a9474cfc45d97e91, type: 2}
   _upgradeItemRepository: {fileID: 11400000, guid: 477ebc1fa296d8040aa378d391b68c05,
     type: 2}
+  _abilityConfigs:
+  - {fileID: 11400000, guid: 92429ee53826c024c86048cdd6568edd, type: 2}
 --- !u!4 &1587739809
 Transform:
   m_ObjectHideFlags: 0

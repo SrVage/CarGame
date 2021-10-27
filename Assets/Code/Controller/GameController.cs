@@ -4,11 +4,13 @@ using Code.Model.Ability;
 using Code.Model.Inventory;
 using Code.Tools;
 using Code.View;
+using UnityEngine;
 
 namespace Code.InputLogic
 {
     public class GameController:BaseController
     {
+        private readonly ResourcePath _path = new ResourcePath { PathResource = "Prefabs/Ability" };
         public GameController(ProfilePlayer model, 
             InventoryController inventoryController, 
             IAbilityRepository abilityRepository, 
@@ -29,8 +31,11 @@ namespace Code.InputLogic
             inventoryController.InitCarView(carController.GetCar().GetComponent<CarView>());
             inventoryController.ApplyInventory();
 
+           var ability = Object.Instantiate(ResourceLoader.LoadPrefab(_path)).GetComponent<AbilityCollectionViewUI>();
+
             var abilityController = new AbilityController(inventoryModel, abilityRepository,
-                new AbilityCollectionViewStub(), carController);
+                ability, carController);
+            AddController(abilityController);
         }
     }
 }

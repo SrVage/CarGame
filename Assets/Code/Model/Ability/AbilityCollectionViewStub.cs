@@ -9,12 +9,12 @@ namespace Code.Model.Ability
         public event EventHandler<IItem> UseRequest;
         public void Display(IReadOnlyList<IItem> abilityItems)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Hide()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

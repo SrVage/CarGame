@@ -20,7 +20,8 @@ namespace Code.Model.Inventory
         {
             _inventoryModel = inventoryModel;
             _itemRepository = itemRepository;
-            _inventoryView = Object.FindObjectOfType<InventoryView>();
+            //ApplyInventory();
+            //_inventoryView = Object.FindObjectOfType<InventoryView>();
             //_inventoryView.Init(this);
         }
 
@@ -42,7 +43,7 @@ namespace Code.Model.Inventory
                 _carView.AddUpgrade(item);
             }
 
-            Object.FindObjectOfType<InventoryView>().Init(this);
+            //Object.FindObjectOfType<InventoryView>().Init(this);
             //_inventoryView.Display(equipedItems);
         }
 

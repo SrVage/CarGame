@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Code.Controller;
 using Code.Model.Inventory;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Code.Model.Ability
 {
@@ -31,7 +33,9 @@ namespace Code.Model.Ability
         private void OnAbilityUseRequested(object sender, IItem e)
         {
             if (_abilityRepository.Content.TryGetValue(e.ID, out var ability))
+            {
                 ability.Apply(_abilityActivator);
+            }
         }
 
         protected override void OnDispose()

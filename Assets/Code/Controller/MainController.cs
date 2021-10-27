@@ -20,7 +20,7 @@ namespace Code.InputLogic
         private InventoryController _inventoryController;
         private ShedController _shedController;
         private List<ShopItem> _shopItems;
-        private InventoryModel _inventoryModelModel;
+        private InventoryModel _inventoryModel;
         private ItemRepository _itemsRepository;
         private UpgradeItemRepository _upgradeItemRepository;
         private IShop _shop;
@@ -32,12 +32,12 @@ namespace Code.InputLogic
             _model = model;
             _uiRoot = uiRoot;
             _shopItems = shopItems;
-            _inventoryModelModel = new InventoryModel();
+            _inventoryModel = new InventoryModel();
             _itemsRepository = new ItemRepository(item);
             _shop = shop;
             _abilityConfigs = abilityConfigs;
             _upgradeItemRepository = item;
-            //_inventoryController = new InventoryController(_inventoryModelModel, _itemsRepository);
+            _inventoryController = new InventoryController(_inventoryModel, _itemsRepository);
             _shedController = new ShedController(item, _model.CurrentCar);
             model.CurrentState.SubscribeOnChange(OnStateChange);
         }
@@ -57,7 +57,7 @@ namespace Code.InputLogic
                 case GameState.Game:
                     _menuController?.Dispose();
                     _menuController = null;
-                    _gameController = new GameController(_model, _inventoryController, new AbilityRepository(_abilityConfigs), _inventoryModelModel);
+                    _gameController = new GameController(_model, _inventoryController, new AbilityRepository(_abilityConfigs), _inventoryModel);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);
