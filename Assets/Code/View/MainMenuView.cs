@@ -50,11 +50,11 @@ namespace Code.View
         {
             foreach (var item in shopItem)
             {
-                var go = new GameObject(item.ID);
+                var go = new GameObject(item.ShopProduct.ID);
                 go.transform.parent = _itemPanel.transform;
                 go.AddComponent<Image>().sprite = item.Icon;
                 go.AddComponent<Button>().onClick.AddListener((() => Buy(go.name)));
-                var textGO = new GameObject(item.Name + "Text");
+                var textGO = new GameObject(item.ShopProduct.ID + "Text");
                 textGO.AddComponent<Text>().text = item.Cost.ToString();
                 textGO.GetComponent<Text>().font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
                 textGO.GetComponent<Text>().fontSize = 50;

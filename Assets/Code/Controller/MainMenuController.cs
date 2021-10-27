@@ -18,11 +18,11 @@ namespace Code.InputLogic
         private ShedController _shedController;
         private MainMenuView _view;
 
-        public MainMenuController(Transform canvasParent, ProfilePlayer model, List<ShopItem> shopItems, UpgradeItemRepository upgradeItemRepository)
+        public MainMenuController(Transform canvasParent, ProfilePlayer model, List<ShopItem> shopItems, UpgradeItemRepository upgradeItemRepository, IShop shop)
         {
             _shopItems = shopItems;
             _view = CreateView(canvasParent);
-            var shopProvider = new ShopProvider(new ShopTools(_shopItems), shopItems, _view);
+            var shopProvider = new ShopProvider(shop, shopItems, _view);
             AddGameObject(_view.gameObject);
             _model = model;
             _view.StartClick += OnStart;

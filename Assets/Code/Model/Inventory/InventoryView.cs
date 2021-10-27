@@ -41,8 +41,12 @@ namespace Code.Model.Inventory
                 textGO.transform.parent = go.transform;
             }
         }
-        
-        
+
+        public void Hide()
+        {
+            //throw new NotImplementedException();
+        }
+
 
         protected virtual void OnSelected(IItem e)
         {

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using Code.Model.Config;
 using Code.View;
 using UnityEngine;
+using UnityEngine.Purchasing;
 
 namespace Code.Model.Shop
 {
     public class ShopProvider
     {
         private const string MONEY = "MONEY";
-        private ShopTools _shopTools;
+        private IShop _shopTools;
         private List<ShopItem> _shopProducts;
         private ShopItem _currentProduct;
 
-        public ShopProvider(ShopTools shopTools, List<ShopItem> shopProducts, MainMenuView view)
+
+        public ShopProvider(IShop shopTools, List<ShopItem> shopProducts, MainMenuView view)
         {
             _shopTools = shopTools;
             _shopTools.OnSuccessPurchase.SubscribeOnChange(AddValue);
@@ -25,7 +27,7 @@ namespace Code.Model.Shop
         {
             Debug.Log("Add");
             var money = GetMoney();
-            money += _currentProduct.Value;
+            money += _currentProduct.ShopProduct.ProductModification.Value;
             SaveMoney(money);
         }
 
@@ -33,7 +35,7 @@ namespace Code.Model.Shop
         {
             foreach (var product in _shopProducts)
             {
-                if (product.ID == id)
+                if (product.ShopProduct.ID == id)
                 {
                     _currentProduct = product;
                 }
@@ -53,6 +55,36 @@ namespace Code.Model.Shop
         private void SaveMoney(int money)
         {
             PlayerPrefs.SetInt(MONEY, money);
+        }
+
+        public void InitiatePurchase(Product product, string payload)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitiatePurchase(string productId, string payload)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitiatePurchase(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitiatePurchase(string productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FetchAdditionalProducts(HashSet<ProductDefinition> additionalProducts, Action successCallback, Action<InitializationFailureReason> failCallback)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ConfirmPendingPurchase(Product product)
+        {
+            throw new NotImplementedException();
         }
     }
 }

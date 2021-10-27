@@ -17,7 +17,7 @@ namespace Code.Model.Inventory
 
         private void AddItemsInDictionary(ref Dictionary<int,IUpgradableCarHandler> upgradableCarHandlers, IItemRepository repository)
         {
-            foreach (var item in repository.Items.Values)
+            foreach (var item in repository.Content.Values)
             {
                 if (upgradableCarHandlers.ContainsKey(item.ID)) continue;
                 upgradableCarHandlers.Add(item.ID, CreateHandler(item));

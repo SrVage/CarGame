@@ -10,6 +10,7 @@ namespace Code.Model
             CurrentCar = new Car(speedCar);
         } 
         public SubscriptionProperty<GameState> CurrentState { get; }
+        public SubscriptionProperty<int> Gold { get; }
         public Car CurrentCar { get; }
     }
 }

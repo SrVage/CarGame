@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1990d53686174b9db896ad06e80856ee, type: 3}
   m_Name: GoldX3
   m_EditorClassIdentifier: 
-  ID: 2
-  CurrentProductType: 0
-  Name: Gold X3
+  ShopProduct:
+    ID: threeGold
+    CurrentProductType: 0
+    ProductModification:
+      Modification: 1
+      Value: 3
   Cost: 25
   Icon: {fileID: 21300000, guid: 22d5b5957cd238442a363867792b177b, type: 3}
-  Value: 3

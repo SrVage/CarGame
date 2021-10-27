@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Code.Model.Tools;
 
 namespace Code.Model.Inventory
 {
-    public interface IItemRepository
-    {
-        IReadOnlyDictionary<int,IItem> Items { get; }
+    public interface IItemRepository:IRepository<int, IItem>
+    { 
+        
     }
 }

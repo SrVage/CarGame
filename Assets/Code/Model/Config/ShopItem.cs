@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Model.Shop;
+using UnityEngine;
 using UnityEngine.Purchasing;
 
 namespace Code.Model.Config
@@ -6,11 +7,8 @@ namespace Code.Model.Config
     [CreateAssetMenu (order = 1, fileName = "Shop Item", menuName = "Config/Shop/Item")]
     public class ShopItem:ScriptableObject
     {
-        public string ID;
-        public ProductType CurrentProductType;
-        public string Name;
+        public ShopProduct ShopProduct;
         public int Cost;
         public Sprite Icon;
-        public int Value;
     }
 }

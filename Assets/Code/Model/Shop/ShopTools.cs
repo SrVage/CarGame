@@ -23,7 +23,7 @@ namespace Code.Model.Shop
             ConfigurationBuilder configurationBuilder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             foreach (var product in products)
             {
-                configurationBuilder.AddProduct(product.ID, product.CurrentProductType);
+                configurationBuilder.AddProduct(product.ShopProduct.ID, product.ShopProduct.CurrentProductType);
             }
         }
         

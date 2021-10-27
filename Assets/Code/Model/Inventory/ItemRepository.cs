@@ -7,7 +7,7 @@ namespace Code.Model.Inventory
 {
     public class ItemRepository:IItemRepository, IDisposable
     {
-        public IReadOnlyDictionary<int, IItem> Items => _items;
+        public IReadOnlyDictionary<int, IItem> Content => _items;
         private Dictionary<int, IItem> _items = new Dictionary<int, IItem>();
 
         public ItemRepository(UpgradeItemRepository repository)

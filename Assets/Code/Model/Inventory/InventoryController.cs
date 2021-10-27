@@ -21,7 +21,7 @@ namespace Code.Model.Inventory
             _inventoryModel = inventoryModel;
             _itemRepository = itemRepository;
             _inventoryView = Object.FindObjectOfType<InventoryView>();
-            _inventoryView.Init(this);
+            //_inventoryView.Init(this);
         }
 
         public void InitCarView(CarView car)
@@ -31,7 +31,7 @@ namespace Code.Model.Inventory
         
         public void ApplyInventory()
         {
-            foreach (var item in _itemRepository.Items.Values)
+            foreach (var item in _itemRepository.Content.Values)
             {
                 _inventoryModel.Equiped(item);
             }

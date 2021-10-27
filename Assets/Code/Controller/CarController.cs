@@ -1,10 +1,11 @@
-﻿using Code.Tools;
+﻿using Code.Model.Ability;
+using Code.Tools;
 using Code.View;
 using UnityEngine;
 
 namespace Code.Controller
 {
-    public class CarController:BaseController
+    public class CarController:BaseController, IAbilityActivator
     {
         private readonly ResourcePath _path = new ResourcePath() { PathResource = "Prefabs/Car" };
         private readonly CarView _carView;
@@ -23,6 +24,11 @@ namespace Code.Controller
         }
 
         public GameObject GetCar()
+        {
+            return _carView.gameObject;
+        }
+
+        public GameObject GetViewObject()
         {
             return _carView.gameObject;
         }

@@ -9,5 +9,6 @@ namespace Code.Model.Inventory
        event EventHandler<IItem> Diselected;
        void Init(InventoryController controller);
        void Display(IReadOnlyList<IItem> item);
+       void Hide();
     }
 }
