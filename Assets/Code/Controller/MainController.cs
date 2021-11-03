@@ -7,6 +7,8 @@ using Code.Model.Config;
 using Code.Model.Inventory;
 using Code.Model.Shed;
 using Code.Model.Shop;
+using Code.Rewards.Controller;
+using Code.Rewards.View;
 using UnityEngine;
 
 namespace Code.InputLogic
@@ -23,11 +25,13 @@ namespace Code.InputLogic
         private InventoryModel _inventoryModel;
         private ItemRepository _itemsRepository;
         private UpgradeItemRepository _upgradeItemRepository;
+        private DailyRewardController _rewardController;
         private IShop _shop;
         private readonly List<AbilityItemConfig> _abilityConfigs;
+        private readonly RewardView _rewardView;
 
         public MainController(ProfilePlayer model, Transform uiRoot, List<ShopItem> shopItems,
-            UpgradeItemRepository item, IShop shop, List<AbilityItemConfig> abilityConfigs)
+            UpgradeItemRepository item, IShop shop, List<AbilityItemConfig> abilityConfigs, RewardView rewardView)
         {
             _model = model;
             _uiRoot = uiRoot;
@@ -36,6 +40,7 @@ namespace Code.InputLogic
             _itemsRepository = new ItemRepository(item);
             _shop = shop;
             _abilityConfigs = abilityConfigs;
+            _rewardView = rewardView;
             _upgradeItemRepository = item;
             _inventoryController = new InventoryController(_inventoryModel, _itemsRepository);
             _shedController = new ShedController(item, _model.CurrentCar);
@@ -52,6 +57,7 @@ namespace Code.InputLogic
                     _gameController?.Dispose();
                     _gameController = null;
                     _menuController = new MainMenuController(_uiRoot, _model, _shopItems, _upgradeItemRepository, _shop);
+                    _rewardController = new DailyRewardController(_rewardView, _uiRoot);
                     //_inventoryController = new InventoryController(_inventoryModelModel, _itemsRepository);
                     break;
                 case GameState.Game:

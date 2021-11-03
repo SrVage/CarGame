@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "567221280145",
+    "project_id": "cargame-c652a",
+    "storage_bucket": "cargame-c652a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567221280145:android:689a86c892c05047e74e30",
+        "android_client_info": {
+          "package_name": "com.firebase.unity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567221280145-acmkpegrkht48umrtvd49merlmpv7fc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl2CjUh6jFm6FIEwnj-wsLCItfoDJTj7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567221280145-acmkpegrkht48umrtvd49merlmpv7fc0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
