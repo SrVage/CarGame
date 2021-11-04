@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Rewards.Model;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,8 +32,20 @@ namespace Code.Rewards.View
         public Button GETRewardButton => _getReward;
         public Button CloseButton => _closeButton;
         public Image ProgressBar => _progressBar;
+        private float _showTime = 1f;
 
         public Image ProgressBarWeek => _progressBarWeek;
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            transform.DOScale(Vector3.zero, _showTime).From();
+        }
+
+        public void Hide()
+        {
+            transform.DOScale(Vector3.zero, _showTime).OnComplete(() => gameObject.SetActive(false));
+        }
 
         public int ActiveSlots
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Code.Rewards.View
         private void Awake()
         {
             Instance = this;
+            transform.DOLocalMove(new Vector3(transform.position.x, 200, transform.position.z), 1f).From();
         }
 
         public int Gold

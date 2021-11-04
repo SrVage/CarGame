@@ -20,6 +20,7 @@ namespace Code.Rewards.Controller
         {
             _rewardView = view;
             _rewardView = Object.Instantiate(_rewardView, root);
+            _rewardView.Show();
             InitSlot();
             SubscribeButton();
             _rewardView.StartCoroutine(RewardsStateUpdater());
@@ -118,7 +119,8 @@ namespace Code.Rewards.Controller
 
         private void Close()
         {
-            _rewardView.gameObject.SetActive(false);
+            _rewardView.Hide();
+            //_rewardView.gameObject.SetActive(false);
         }
 
         private void GetReward()
