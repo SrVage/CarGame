@@ -113,8 +113,8 @@ namespace Code.Rewards.Controller
 
         private void SubscribeButton()
         {
-            _rewardView.GETRewardButton.onClick.AddListener(GetReward);
-            _rewardView.CloseButton.onClick.AddListener(Close);
+            _rewardView.GETRewardButton.afterAnimationEvent.AddListener(GetReward);
+            _rewardView.CloseButton.afterAnimationEvent.AddListener(Close);
         }
 
         private void Close()

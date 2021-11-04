@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Rewards.Model;
+using Code.Tools;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +17,8 @@ namespace Code.Rewards.View
         [SerializeField] private float _timeDeadlineDay = 172800;
         [SerializeField] private float _timeCooldownWeek = 604800;
         [SerializeField] private float _timeDeadlineWeek = 1209600;
-        [SerializeField] private Button _getReward;
-        [SerializeField] private Button _closeButton;
+        [SerializeField] private AnimatingButton _getReward;
+        [SerializeField] private AnimatingButton _closeButton;
         [SerializeField] private ContainerSlotRewardView _containerSlotReward;
         [SerializeField] private Image _progressBar;
         [SerializeField] private Image _progressBarWeek;
@@ -29,8 +30,8 @@ namespace Code.Rewards.View
         public ContainerSlotRewardView ContainerSlotReward => _containerSlotReward;
         public Transform RewardContainer;
         public List<Reward> Rewards;
-        public Button GETRewardButton => _getReward;
-        public Button CloseButton => _closeButton;
+        public AnimatingButton GETRewardButton => _getReward;
+        public AnimatingButton CloseButton => _closeButton;
         public Image ProgressBar => _progressBar;
         private float _showTime = 1f;
 

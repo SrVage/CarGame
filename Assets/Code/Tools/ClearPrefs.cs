@@ -1,9 +1,9 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEditor;
 
 namespace Code.Tools
 {
-    public class ClearPrefs
+    public static class ClearPrefs
     {
         [MenuItem("Tools/Clear PlayerPrefs")]
         public static void ClearPlayerPrefs()
