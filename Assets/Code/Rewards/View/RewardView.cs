@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Model;
 using Code.Rewards.Model;
 using Code.Tools;
 using DG.Tweening;
@@ -43,9 +44,9 @@ namespace Code.Rewards.View
             transform.DOScale(Vector3.zero, _showTime).From();
         }
 
-        public void Hide()
+        public void Hide(ProfilePlayer model)
         {
-            transform.DOScale(Vector3.zero, _showTime).OnComplete(() => gameObject.SetActive(false));
+            transform.DOScale(Vector3.zero, _showTime).OnComplete(() => model.CurrentState.value = GameState.Start);
         }
 
         public int ActiveSlots

@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Code.Controller;
+using Code.Model;
 using Code.Rewards.View;
+using Code.Tools;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,16 +12,21 @@ namespace Code.Rewards.Controller
 {
     public class DailyRewardController:BaseController
     {
+        private ResourcePath _rewardMenuResourcePath = new ResourcePath() { PathResource = "Prefabs/rewardPanel"};
         private const int WeekReward=500;
         private RewardView _rewardView;
         private List<ContainerSlotRewardView> _containerSlotReward;
+        private readonly ProfilePlayer _model;
         private bool _isGetReward;
         private bool _isGetWeekReward;
 
-        public DailyRewardController(RewardView view, Transform root)
+        public DailyRewardController(Transform root, ProfilePlayer model)
         {
-            _rewardView = view;
-            _rewardView = Object.Instantiate(_rewardView, root);
+            _model = model;
+            var prefab = ResourceLoader.LoadPrefab(_rewardMenuResourcePath);
+            var go = Object.Instantiate(prefab, root);
+            AddGameObject(go);
+            _rewardView = go.GetComponent<RewardView>();
             _rewardView.Show();
             InitSlot();
             SubscribeButton();
@@ -108,7 +115,7 @@ namespace Code.Rewards.Controller
             {
                 _containerSlotReward[i].SetData(_rewardView.Rewards[i],i+1, i==_rewardView.ActiveSlots);
             }
-            CurrencyView.Instance.RefreshText();
+            //CurrencyView.Instance.RefreshText();
         }
 
         private void SubscribeButton()
@@ -119,8 +126,7 @@ namespace Code.Rewards.Controller
 
         private void Close()
         {
-            _rewardView.Hide();
-            //_rewardView.gameObject.SetActive(false);
+            _rewardView.Hide(_model);
         }
 
         private void GetReward()
@@ -131,10 +137,10 @@ namespace Code.Rewards.Controller
                 switch (reward.RewardType)
                 {
                     case RewardType.Gold:
-                        CurrencyView.Instance.AddGold(reward.Value);
+                        _model.Gold.value += reward.Value;
                         break;
                     case RewardType.Diamonds:
-                        CurrencyView.Instance.AddDiamonds(reward.Value);
+                        _model.Diamond.value += reward.Value;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -145,7 +151,8 @@ namespace Code.Rewards.Controller
             }
             if (_isGetWeekReward)
             {
-                CurrencyView.Instance.AddDiamonds(WeekReward);
+                //CurrencyView.Instance.AddDiamonds(WeekReward);
+                _model.Diamond.value += WeekReward;
                 _rewardView.GetTimeRewardWeek = DateTime.UtcNow;
             }
             RefreshRewardsState();

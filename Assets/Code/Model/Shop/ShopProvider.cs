@@ -20,7 +20,6 @@ namespace Code.Model.Shop
             _shopTools = shopTools;
             _shopTools.OnSuccessPurchase.SubscribeOnChange(AddValue);
             _shopProducts = shopProducts;
-            view.BuyItem += Buy;
         }
 
         private void AddValue()
