@@ -1,5 +1,5 @@
-﻿using Code.Controller;
-using Code.Model;
+﻿using Code.GamePlay.Model;
+using Code.MainLogic.Controller;
 using Code.Tools;
 using UnityEngine;
 

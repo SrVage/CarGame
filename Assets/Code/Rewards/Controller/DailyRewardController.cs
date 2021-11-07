@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Code.Controller;
-using Code.Model;
+using Code.MainLogic.Controller;
+using Code.MainLogic.Model;
 using Code.Rewards.View;
 using Code.Tools;
 using UnityEngine;
@@ -23,17 +23,22 @@ namespace Code.Rewards.Controller
         public DailyRewardController(Transform root, ProfilePlayer model)
         {
             _model = model;
-            var prefab = ResourceLoader.LoadPrefab(_rewardMenuResourcePath);
-            var go = Object.Instantiate(prefab, root);
-            AddGameObject(go);
-            _rewardView = go.GetComponent<RewardView>();
-            _rewardView.Show();
+            CreateView(root);
             InitSlot();
             SubscribeButton();
             _rewardView.StartCoroutine(RewardsStateUpdater());
             RefreshUI();
         }
-        
+
+        private void CreateView(Transform root)
+        {
+            var prefab = ResourceLoader.LoadPrefab(_rewardMenuResourcePath);
+            var go = Object.Instantiate(prefab, root);
+            AddGameObject(go);
+            _rewardView = go.GetComponent<RewardView>();
+            _rewardView.Show();
+        }
+
         private void InitSlot()
         {
             _containerSlotReward = new List<ContainerSlotRewardView>();
@@ -59,29 +64,28 @@ namespace Code.Rewards.Controller
         {
             _isGetReward = true;
             _isGetWeekReward = true;
-            if (_rewardView.GetTimeRewardDay.HasValue)
+            if (_model.RewardModel.GetTimeRewardDay.HasValue)
             {
-                var timeSpan = DateTime.UtcNow - _rewardView.GetTimeRewardDay.Value;
-
-                if (timeSpan.Seconds > _rewardView.TimeDeadlineDay)
+                var timeSpan = DateTime.UtcNow -_model.RewardModel.GetTimeRewardDay.Value;
+                if (timeSpan.TotalSeconds > _rewardView.TimeDeadlineDay)
                 {
-                    _rewardView.GetTimeRewardDay = null;
+                    _model.RewardModel.GetTimeRewardDay = null;
                     _rewardView.ActiveSlots = 0;
                 }
-                else if (timeSpan.Seconds < _rewardView.TimeCooldownDay)
+                else if (timeSpan.TotalSeconds < _rewardView.TimeCooldownDay)
                 {
                     _isGetReward = false;
                 }
             }
-            if (_rewardView.GetTimeRewardWeek.HasValue)
+            if (_model.RewardModel.GetTimeRewardWeek.HasValue)
             {
-                var timeSpan = DateTime.UtcNow - _rewardView.GetTimeRewardWeek.Value;
+                var timeSpan = DateTime.UtcNow - _model.RewardModel.GetTimeRewardWeek.Value;
 
-                if (timeSpan.Seconds > _rewardView.TimeDeadlineWeek)
+                if (timeSpan.TotalSeconds > _rewardView.TimeDeadlineWeek)
                 {
-                    _rewardView.GetTimeRewardWeek = null;
+                    _model.RewardModel.GetTimeRewardWeek = null;
                 }
-                else if (timeSpan.Seconds < _rewardView.TimeCooldownDay)
+                else if (timeSpan.TotalSeconds < _rewardView.TimeCooldownDay)
                 {
                     _isGetWeekReward = false;
                 }
@@ -94,19 +98,19 @@ namespace Code.Rewards.Controller
             _rewardView.GETRewardButton.interactable = _isGetReward||_isGetWeekReward;
             if (!_isGetReward)
             {
-                if (_rewardView.GetTimeRewardDay != null)
+                if (_model.RewardModel.GetTimeRewardDay != null)
                 {
-                    var nextClaimTime = _rewardView.GetTimeRewardDay.Value.AddSeconds(_rewardView.TimeCooldownDay);
+                    var nextClaimTime = _model.RewardModel.GetTimeRewardDay.Value.AddSeconds(_rewardView.TimeCooldownDay);
                     var currentClaimDown = nextClaimTime - DateTime.UtcNow;
                     _rewardView.ProgressBar.fillAmount = 1 - ((float)currentClaimDown.TotalSeconds / _rewardView.TimeCooldownDay);
                 }
-                
+                            
             }
             if (!_isGetWeekReward)
             {
-                if (_rewardView.GetTimeRewardWeek != null)
+                if (_model.RewardModel.GetTimeRewardWeek != null)
                 {
-                    var nextClaimTime = _rewardView.GetTimeRewardWeek.Value.AddSeconds(_rewardView.TimeCooldownWeek);
+                    var nextClaimTime = _model.RewardModel.GetTimeRewardWeek.Value.AddSeconds(_rewardView.TimeCooldownWeek);
                     var currentClaimDown = nextClaimTime - DateTime.UtcNow;
                     _rewardView.ProgressBarWeek.fillAmount = 1 - ((float)currentClaimDown.TotalSeconds / _rewardView.TimeCooldownWeek);
                 }
@@ -115,7 +119,6 @@ namespace Code.Rewards.Controller
             {
                 _containerSlotReward[i].SetData(_rewardView.Rewards[i],i+1, i==_rewardView.ActiveSlots);
             }
-            //CurrencyView.Instance.RefreshText();
         }
 
         private void SubscribeButton()
@@ -137,23 +140,22 @@ namespace Code.Rewards.Controller
                 switch (reward.RewardType)
                 {
                     case RewardType.Gold:
-                        _model.Gold.value += reward.Value;
+                        _model.RewardModel.Gold.value += reward.Value;
                         break;
                     case RewardType.Diamonds:
-                        _model.Diamond.value += reward.Value;
+                        _model.RewardModel.Diamond.value += reward.Value;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                _rewardView.GetTimeRewardDay = DateTime.UtcNow;
+                _model.RewardModel.GetTimeRewardDay = DateTime.UtcNow;
                 _rewardView.ActiveSlots = (_rewardView.ActiveSlots + 1) % _rewardView.Rewards.Count;
             }
             if (_isGetWeekReward)
             {
-                //CurrencyView.Instance.AddDiamonds(WeekReward);
-                _model.Diamond.value += WeekReward;
-                _rewardView.GetTimeRewardWeek = DateTime.UtcNow;
+                _model.RewardModel.Diamond.value += WeekReward;
+                _model.RewardModel.GetTimeRewardWeek = DateTime.UtcNow;
             }
             RefreshRewardsState();
         }

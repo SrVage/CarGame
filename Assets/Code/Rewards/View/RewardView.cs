@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Model;
+﻿using System.Collections.Generic;
+using Code.MainLogic.Model;
 using Code.Rewards.Model;
 using Code.Tools;
 using DG.Tweening;
@@ -11,8 +10,6 @@ namespace Code.Rewards.View
 {
     public class RewardView:MonoBehaviour
     {
-        private const string LastTimeReward = nameof(LastTimeReward);
-        private const string LastTimeRewardWeek = nameof(LastTimeRewardWeek);
         private const string ActiveSlot = nameof(ActiveSlot);
         [SerializeField] private float _timeCooldownDay = 86400;
         [SerializeField] private float _timeDeadlineDay = 172800;
@@ -54,41 +51,7 @@ namespace Code.Rewards.View
             get => PlayerPrefs.GetInt(ActiveSlot, 0);
             set => PlayerPrefs.SetInt(ActiveSlot, value);
         }
-
-        public DateTime? GetTimeRewardDay
-        {
-            get
-            {
-                var data = PlayerPrefs.GetString(LastTimeReward, null);
-                if (string.IsNullOrEmpty(data)) return null;
-                return DateTime.Parse(data);
-            }
-            set
-            {
-                if (value == null)
-                    PlayerPrefs.DeleteKey(LastTimeReward);
-                else
-                    PlayerPrefs.SetString(LastTimeReward, value.ToString());
-            }
-        }        
-        public DateTime? GetTimeRewardWeek
-        {
-            get
-            {
-                var data = PlayerPrefs.GetString(LastTimeRewardWeek, null);
-                if (string.IsNullOrEmpty(data)) return null;
-                return DateTime.Parse(data);
-            }
-            set
-            {
-                if (value == null)
-                    PlayerPrefs.DeleteKey(LastTimeRewardWeek);
-                else
-                    PlayerPrefs.SetString(LastTimeRewardWeek, value.ToString());
-            }
-        }
-
-
+        
         private void OnDestroy()
         {
             GETRewardButton.onClick.RemoveAllListeners();

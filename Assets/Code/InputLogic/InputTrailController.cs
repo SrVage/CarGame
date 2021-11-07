@@ -1,5 +1,5 @@
-﻿using Code.Tools;
-using Code.View;
+﻿using Code.MainLogic.View;
+using Code.Tools;
 using JoostenProductions;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -102,7 +102,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -117,16 +117,16 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 103992635123823382}
+  m_TargetGraphic: {fileID: 4914944905130684056}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
   afterAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  _duration: 0.5
-  _strength: 40
-  _ease: 0
+  _duration: 0.1
+  _strength: 2
+  _ease: 29
 --- !u!1 &103992635791924794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,9 +1197,9 @@ MonoBehaviour:
   afterAnimationEvent:
     m_PersistentCalls:
       m_Calls: []
-  _duration: 0.5
-  _strength: 40
-  _ease: 0
+  _duration: 0.1
+  _strength: 2
+  _ease: 29
 --- !u!1 &8596610022553695528
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
-﻿using Code.AI.Model;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Code.AI.View
@@ -17,94 +17,68 @@ namespace Code.AI.View
         [SerializeField] private Button _crimeMinus;
         [SerializeField] private Button _fight;
         [SerializeField] private Button _go;
+        [SerializeField] private Button _exit;
         [SerializeField] private TMP_Text _moneyStat;
         [SerializeField] private TMP_Text _powerStat;
         [SerializeField] private TMP_Text _healthStat;
         [SerializeField] private TMP_Text _crimeStat;
         [SerializeField] private TMP_Text _enemyPowerStat;
         [SerializeField] private TMP_Text _fightStatus;
-        private Health _health;
-        private Money _money;
-        private Power _power;
-        private Crime _crime;
-        private Enemy _enemy;
 
-        private void Start()
+        public TMP_Text MoneyStat
         {
-            _moneyPlus.onClick.AddListener(() => ChangeMoney(true));
-            _moneyMinus.onClick.AddListener(() => ChangeMoney(false));
-            _healthPlus.onClick.AddListener(() => ChangeHealth(true));
-            _healthMinus.onClick.AddListener(() => ChangeHealth(false));
-            _powerPlus.onClick.AddListener(() => ChangePower(true));
-            _powerMinus.onClick.AddListener(() => ChangePower(false));
-            _crimePlus.onClick.AddListener(() => ChangeCrime(true));
-            _crimeMinus.onClick.AddListener(() => ChangeCrime(false));
-            _fight.onClick.AddListener(() =>Fight());
-            _health = new Health(nameof(Health));
-            _power = new Power(nameof(Power));
-            _money = new Money(nameof(Money));
-            _crime = new Crime(nameof(Crime));
-            _enemy = new Enemy();
-            var ui = new UIObserver(_moneyStat, _healthStat, _powerStat, _crimeStat);
-            _health.AddObserver(_enemy);
-            _health.AddObserver(ui);
-            _power.AddObserver(_enemy);
-            _power.AddObserver(ui);
-            _money.AddObserver(_enemy);
-            _money.AddObserver(ui);
-            _crime.AddObserver(_enemy);
-            _crime.AddObserver(ui);
-            _enemy.OnUpdate += UpdateEnemyStat;
+            get => _moneyStat;
+            set => _moneyStat = value;
         }
 
-        private void ChangeMoney(bool add)
+        public TMP_Text PowerStat
         {
-            if (add)
-                _money.Money += 1;
-            else
-                _money.Money -= 1;
+            get => _powerStat;
+            set => _powerStat = value;
         }
 
-        private void ChangePower(bool add)
+        public TMP_Text HealthStat
         {
-            if (add)
-                _power.Power += 1;
-            else
-                _power.Power -= 1;
+            get => _healthStat;
+            set => _healthStat = value;
         }
 
-        private void ChangeHealth(bool add)
+        public TMP_Text CrimeStat
         {
-            if (add)
-                _health.Health += 1;
-            else
-                _health.Health -= 1;
+            get => _crimeStat;
+            set => _crimeStat = value;
         }
 
-        private void ChangeCrime(bool add)
+        public TMP_Text EnemyPowerStat
         {
-            if (add)
-                _crime.Crime += 1;
-            else
-                _crime.Crime -= 1;
-            if (_crime.Crime < 4) 
-                _go.gameObject.SetActive(true);
-            else
-                _go.gameObject.SetActive(false);
+            get => _enemyPowerStat;
+            set => _enemyPowerStat = value;
         }
 
-        private void Fight()
+        public TMP_Text FightStatus
         {
-            _fightStatus.gameObject.SetActive(true);
-            if (_enemy.EnemyPower > _power.Power)
-                _fightStatus.text = "You loose";
-            else
-                _fightStatus.text = "You win";
+            get => _fightStatus;
+            set => _fightStatus = value;
         }
 
-        private void UpdateEnemyStat(int power)
+        public Button GO
         {
-            _enemyPowerStat.text = $"Enemy Power: {_enemy.EnemyPower}";
+            get => _go;
+            set => _go = value;
+        }
+
+        public void Init(UnityAction<bool> changeMoney, UnityAction<bool> changeHealth, UnityAction<bool> changePower, UnityAction<bool> changeCrime, UnityAction fight, UnityAction exit)
+        {
+            _moneyPlus.onClick.AddListener(() => changeMoney(true));
+            _moneyMinus.onClick.AddListener(() => changeMoney(false));
+            _healthPlus.onClick.AddListener(() => changeHealth(true));
+            _healthMinus.onClick.AddListener(() => changeHealth(false));
+            _powerPlus.onClick.AddListener(() => changePower(true));
+            _powerMinus.onClick.AddListener(() => changePower(false));
+            _crimePlus.onClick.AddListener(() => changeCrime(true));
+            _crimeMinus.onClick.AddListener(() => changeCrime(false));
+            _fight.onClick.AddListener(fight);
+            _exit.onClick.AddListener(exit);
         }
     }
 }

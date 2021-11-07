@@ -1,6 +1,4 @@
-﻿using System;
-using Code.Model;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -25,23 +23,5 @@ namespace Code.Rewards.View
         {
             set => _currentDiamonds.text=value.ToString();
         }
-
-        /*public void AddGold(int value)
-        {
-            Gold += value;
-            RefreshText();
-        }
-
-        public void AddDiamonds(int value)
-        {
-            Diamonds += value;
-            RefreshText();
-        }
-
-        public void RefreshText()
-        {
-            _currentGold.text = Gold.ToString();
-            _currentDiamonds.text = Diamonds.ToString();
-        }*/
     }
 }

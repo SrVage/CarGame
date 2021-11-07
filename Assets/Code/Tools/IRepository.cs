@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Code.Model.Tools
+namespace Code.Tools
 {
     public interface IRepository<TKey, TValue>
     {
