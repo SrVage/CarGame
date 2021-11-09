@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Images
+  m_EditorClassIdentifier: 
+  m_GroupName: Images
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 65e071f638764d64585079eca1fb405d
+  m_SerializeEntries:
+  - m_GUID: 88dcb016e0c465d4480a8dce4492b879
+    m_Address: Turbine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0aa6196d79b5db419e9a18c8927b98a
+    m_Address: TruckWheelSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 90f91bf07d6aec14bb60e830bf64792c
+    m_Address: TruckChassisSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 24770088dedc9e84b97afaa1c612d506
+    m_Address: SkyTileSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dede5f4548992dd4ba1c9840a451ed31
+    m_Address: SkySprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bb40c4bb20b72940ba2dd57ae30f88c
+    m_Address: GrassSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a30d0b0e1afd8ab4ea8a4a0290404f59
+    m_Address: GrassThinSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 23f2dcab7a131324d922cfb2bd07db80
+    m_Address: BombLitSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 91a6f4c9b969b4bb9866c25cba77273c
+    m_Address: BombSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ba0c77a22e78e2549bed94766de25cf9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 196303823f28a744fbce68166558a4e7, type: 2}
+    - {fileID: 11400000, guid: 5f296f5fd6e89644fb767ae591351d87, type: 2}

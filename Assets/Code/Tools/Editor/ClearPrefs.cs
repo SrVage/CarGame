@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
-namespace Code.Tools
+namespace Code.Tools.Editor
 {
     public static class ClearPrefs
     {

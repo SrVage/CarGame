@@ -13,9 +13,9 @@ namespace Code.GamePlay.Controller
         private readonly IReadOnlySubscriptionProperty<float> _leftMove;
         private readonly IReadOnlySubscriptionProperty<float> _rightMove;
 
-        public BackgroundController(IReadOnlySubscriptionProperty<float> left, IReadOnlySubscriptionProperty<float> right)
+        public BackgroundController(IReadOnlySubscriptionProperty<float> left, IReadOnlySubscriptionProperty<float> right, GameObject background)
         {
-            _backgroundView = CreateView();
+            _backgroundView = CreateView(background);
             _diff = new SubscriptionProperty<float>();
             _leftMove = left;
             _rightMove = right;
@@ -29,9 +29,8 @@ namespace Code.GamePlay.Controller
             _diff.value = value;
         }
 
-        private Background CreateView()
+        private Background CreateView(GameObject back)
         {
-            var back = Object.Instantiate(ResourceLoader.LoadPrefab(_path));
             AddGameObject(back);
             return back.GetComponent<Background>();
         }

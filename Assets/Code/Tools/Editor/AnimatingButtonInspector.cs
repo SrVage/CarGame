@@ -3,7 +3,7 @@ using UnityEditor.UI;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Code.Tools
+namespace Code.Tools.Editor
 {
     [CustomEditor(typeof(AnimatingButton))]
     public class AnimatingButtonInspector:ButtonEditor

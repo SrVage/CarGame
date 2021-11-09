@@ -17,7 +17,6 @@ namespace Code.GamePlay.View
 
         public void AddUpgrade(IItem item)
         {
-            Debug.Log(item.Place);
             switch (item.Place)
             {
                 case Place.None:
